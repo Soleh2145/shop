@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SolehStore - Toko Game Digital Terlengkap</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap-custom.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-gamestore">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">SolehStore</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html"><i class="fas fa-home me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="store.html"><i class="fas fa-store me-1"></i> Store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html"><i class="fas fa-tags me-1"></i> Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="promo.html"><i class="fas fa-percent me-1"></i> Promo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="news.html"><i class="fas fa-newspaper me-1"></i> News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart me-1"></i> Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="wishlist.html"><i class="fas fa-heart me-1"></i> Wishlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link support-link" href="#" role="button"><i class="fas fa-headset me-1"></i> Support</a>
+          </li>
+        </ul>
+
+        <!-- Compact search: dropdown to keep navbar tidy -->
+        <div class="nav-search dropdown ms-3">
+          <button class="btn btn-outline-gamestore dropdown-toggle" id="navSearchToggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-search"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-end p-3">
+            <form class="d-flex" id="navSearchForm" onsubmit="return false;">
+              <input class="form-control form-control-gamestore me-2" type="search" placeholder="Search games..." id="searchInput">
+              <button class="btn btn-primary-gamestore" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h1 class="display-4 fw-bold mb-3">Temukan Product Terbaik untuk Server Anda</h1>
+          <p class="lead mb-4">Jelajahi katalog terlengkap script sa-mp dengan harga terbaik. Dapatkan diskon eksklusif
+            dan nikmati pengalaman samp terbaik.</p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="store.html" class="btn btn-primary-gamestore btn-lg">
+              <i class="fas fa-gamepad me-2"></i> Jelajahi Store
+            </a>
+            <a href="promo.html" class="btn btn-outline-gamestore btn-lg">
+              <i class="fas fa-fire me-2"></i> Lihat Promo
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner rounded">
+              <div class="carousel-item active">
+                <img
+                  src="bahan/cyberpunk_20771.JPG"
+                  class="d-block w-100" alt="Game Banner 1">
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="bahan/hogwarts_legacy1.JPG"
+                  class="d-block w-100" alt="Game Banner 2">
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="bahan/cyberpunk_20771.jpg"
+                  class="d-block w-100" alt="Game Banner 3">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Featured Games Section -->
+    <section class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title">Prodakk Terpopuler</h2>
+        <a href="store.html" class="btn btn-outline-gamestore">Lihat Semua <i class="fas fa-arrow-right ms-1"></i></a>
+      </div>
+
+      <div class="row g-4" id="featuredGames">
+        <!-- Game cards will be loaded here by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Promo Section -->
+    <section class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title">Penawaran Spesial</h2>
+        <span class="badge-gamestore">Diskon hingga 50%</span>
+      </div>
+      <!-- Promo image link (placeholder) - klik untuk menuju halaman Promo -->
+    <div class="mb-3 text-center">
+  <a href="promo.html" title="Lihat Penawaran & Promo">
+    <img src="bahan/diskon1-removebg-preview.png"
+         alt="Promo Banner"
+         class="img-fluid rounded mx-auto d-block"
+         style="max-height: 100px; width: auto;">
+  </a>
+</div>
+
+
+      <div class="row g-4" id="promoGames">
+        <!-- Promo game cards will be loaded here by JavaScript -->
+      </div>
+    </section>
+
+<!-- News Section: Pawn Script Development -->
+<section class="mb-5">
+  <h2 class="section-title mb-4">Pawn Script Development Log</h2>
+
+  <div class="row">
+    <!-- Artikel Utama -->
+    <div class="col-lg-8">
+      <div class="card game-card mb-4">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="bahan/Capture.png" class="img-fluid rounded-start" alt="Pawn Scripting">
+          </div>
+          <div class="col-md-8">
+            <div class="game-card-body">
+              <h3 class="game-title">Optimasi Sistem Dinamis dengan Pawn</h3>
+              <p class="text-muted mb-2"><i class="far fa-calendar me-1"></i> 27 Juni 2026 • Development</p>
+              <p>Mengoptimalkan script `gamemode` adalah kunci server yang bebas lag. Dalam update kali ini, kita fokus pada efisiensi penggunaan memori, pembersihan `Timer` yang tidak terpakai, dan implementasi sistem database yang lebih cepat menggunakan MySQL R41-4.</p>
+              <a href="news.html" class="btn btn-outline-gamestore btn-sm">Baca Selengkapnya</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Trend -->
+    <div class="col-lg-4">
+      <div class="card game-card">
+        <div class="game-card-body">
+          <h5 class="game-title mb-3">Teknik Pawn Scripting 2026</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="fas fa-code text-primary me-2"></i> Implementasi mimgui yang efisien</li>
+            <li class="mb-2"><i class="fas fa-database text-primary me-2"></i> Optimasi query database SQL</li>
+            <li class="mb-2"><i class="fas fa-microchip text-primary me-2"></i> Penggunaan Hook & Callbacks</li>
+            <li class="mb-2"><i class="fas fa-shield-alt text-primary me-2"></i> Proteksi Anti-Cheat server-side</li>
+            <li><i class="fas fa-bolt text-primary me-2"></i> Manajemen resource & streaming</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Script Development Highlight Section -->
+<section class="mb-5">
+  <h2 class="section-title mb-4">Pawn Script Development Highlights</h2>
+
+  <div class="row">
+    <!-- Kolom Kiri: Detail Teknis -->
+    <div class="col-lg-8">
+      <div class="card game-card h-100 shadow-sm">
+        <div class="game-card-body p-4">
+          <h4 class="game-title text-primary"><i class="fas fa-terminal me-2"></i> Core System Architecture</h4>
+          <p class="text-muted small">Update Terakhir: 27 Juni 2026</p>
+          
+          <div class="row mt-3">
+            <div class="col-md-6 mb-3">
+              <h6 class="fw-bold"><i class="fas fa-database me-2"></i> MySQL Optimization</h6>
+              <p class="small">Implementasi threading untuk query database agar tidak terjadi *main-thread blocking* yang menyebabkan lag pada server.</p>
+            </div>
+            <div class="col-md-6 mb-3">
+              <h6 class="fw-bold"><i class="fas fa-layer-group me-2"></i> Dynamic UI (mimgui)</h6>
+              <p class="small">Pengembangan antarmuka pengguna berbasis mimgui yang ringan, responsif, dan mudah dioperasikan di perangkat mobile.</p>
+            </div>
+            <div class="col-md-6 mb-3">
+              <h6 class="fw-bold"><i class="fas fa-shield-virus me-2"></i> Anti-Cheat Logic</h6>
+              <p class="small">Logika deteksi *server-side* untuk memantau pergerakan pemain dan meminimalisir penggunaan *cheat* tanpa memberatkan server.</p>
+            </div>
+            <div class="col-md-6 mb-3">
+              <h6 class="fw-bold"><i class="fas fa-memory me-2"></i> Memory Management</h6>
+              <p class="small">Pembersihan *timers* dan *dynamic objects* secara otomatis untuk menjaga penggunaan RAM tetap stabil 24/7.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kolom Kanan: Status Server/Script -->
+    <div class="col-lg-4">
+      <div class="card game-card h-100 bg-light border-0">
+        <div class="game-card-body p-4">
+          <h5 class="game-title mb-3">Status Development</h5>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between small mb-1">
+              <span>Optimasi Database</span>
+              <span class="fw-bold">100%</span>
+            </div>
+            <div class="progress" style="height: 8px;">
+              <div class="progress-bar bg-success" style="width: 100%"></div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between small mb-1">
+              <span>Dynamic UI/mimgui</span>
+              <span class="fw-bold">85%</span>
+            </div>
+            <div class="progress" style="height: 8px;">
+              <div class="progress-bar bg-primary" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between small mb-1">
+              <span>Bug Fixing</span>
+              <span class="fw-bold">95%</span>
+            </div>
+            <div class="progress" style="height: 8px;">
+              <div class="progress-bar bg-warning" style="width: 95%"></div>
+            </div>
+          </div>
+          <p class="small text-secondary mt-4">
+            <em>"Setiap baris kode adalah fondasi dari kualitas roleplay yang kita tawarkan. Optimasi berkelanjutan adalah kunci utama."</em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Inline music player removed: floating control remains at bottom-right -->
+
+<!-- Contact Section (Tanpa Map) -->
+<section class="mb-5">
+  <h2 class="section-title mb-4">Hubungi Kami</h2>
+
+  <div class="row">
+    <!-- Kolom Informasi Kontak -->
+    <div class="col-lg-6">
+      <div class="card game-card h-100">
+        <div class="game-card-body p-4">
+          <div class="mb-4">
+            <h5><i class="fas fa-map-marker-alt text-primary me-2"></i> Lokasi Workshop</h5>
+            <p>Koper Pasir Sadang<br> Kecamatan Cikande, Provinsi Banten.</p>
+          </div>
+
+          <div class="mb-4">
+            <h5><i class="fas fa-phone text-primary me-2"></i> Layanan Pelanggan</h5>
+            <p class="text-secondary">COMING SOON</p>
+          </div>
+
+          <div class="mb-4">
+            <h5><i class="fas fa-envelope text-primary me-2"></i> Email Bisnis</h5>
+            <p>solehmuhamad6777@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kolom Jam Operasional & Social Media -->
+    <div class="col-lg-6">
+      <div class="card game-card h-100">
+        <div class="game-card-body p-4">
+          <h5 class="mb-3"><i class="fas fa-clock text-primary me-2"></i> Jam Operasional</h5>
+          <ul class="list-unstyled mb-4">
+            <li class="mb-2 d-flex justify-content-between"><span>Senin - Jumat</span> <span>09:00 - 21:00</span></li>
+            <li class="mb-2 d-flex justify-content-between"><span>Sabtu</span> <span>10:00 - 18:00</span></li>
+            <li class="mb-2 d-flex justify-content-between"><span>Minggu</span> <span>Libur</span></li>
+          </ul>
+          
+          <h5 class="mb-3"><i class="fas fa-share-alt text-primary me-2"></i> Community And Support</h5>
+          <div class="d-grid gap-2">
+            <a href="https://discord.gg/QNNHkCFKm" target="_blank" class="btn btn-primary-gamestore">
+              <i class="fab fa-discord me-2"></i> Join Discord Server
+            </a>
+          </div>
+          <p class="small text-secondary mt-3 text-center">Klik tombol di atas untuk masuk ke server Discord kami dan mendapatkan dukungan teknis tercepat.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-gamestore py-5">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- Branding & Sosmed -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="mb-3 text-white">SolehStore</h5>
+        <p class="text-secondary small">Toko script sa-mp terpercaya dengan koleksi terlengkap dan harga terbaik untuk founder server samp.</p>
+        <div class="d-flex mt-3 gap-2">
+          <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fab fa-discord"></i></a>
+          <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Tautan Cepat -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="mb-3 text-white">Navigasi</h5>
+        <ul class="list-unstyled footer-links">
+          <li class="mb-2"><a href="index.html" class="text-decoration-none text-secondary"><i class="fas fa-angle-right me-1"></i> Home</a></li>
+          <li class="mb-2"><a href="store.html" class="text-decoration-none text-secondary"><i class="fas fa-angle-right me-1"></i> Store</a></li>
+          <li class="mb-2"><a href="categories.html" class="text-decoration-none text-secondary"><i class="fas fa-angle-right me-1"></i> Categories</a></li>
+          <li class="mb-2"><a href="promo.html" class="text-decoration-none text-secondary"><i class="fas fa-angle-right me-1"></i> Promo</a></li>
+        </ul>
+      </div>
+
+      <!-- Layanan & Legal -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="mb-3 text-white">Pusat Bantuan</h5>
+        <ul class="list-unstyled footer-links">
+          <li class="mb-2"><a href="cart.html" class="text-decoration-none text-secondary"><i class="fas fa-shopping-cart me-1"></i> Keranjang</a></li>
+          <li class="mb-2"><a href="wishlist.html" class="text-decoration-none text-secondary"><i class="fas fa-heart me-1"></i> Wishlist</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-secondary"><i class="fas fa-shield-alt me-1"></i> Privasi</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-secondary"><i class="fas fa-file-contract me-1"></i> Ketentuan</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-lg-3 col-md-6">
+        <h5 class="mb-3 text-white">Berlangganan</h5>
+        <p class="text-secondary small">Dapatkan update game terbaru langsung ke email Anda.</p>
+        <form id="newsletterForm">
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Email Anda" required>
+            <button class="btn btn-primary" type="submit"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-top pt-4 mt-4 text-center">
+      <p class="text-secondary small">&copy; 2026 SolehStore. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="games.js"></script>
+  <script src="utils.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

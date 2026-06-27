@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - SolehStore</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap-custom.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-gamestore">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">SolehStore</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="store.html"><i class="fas fa-store me-1"></i> Store</a></li>
+          <li class="nav-item"><a class="nav-link" href="categories.html"><i class="fas fa-tags me-1"></i> Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="promo.html"><i class="fas fa-percent me-1"></i> Promo</a></li>
+          <li class="nav-item"><a class="nav-link" href="news.html"><i class="fas fa-newspaper me-1"></i> News</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart me-1"></i> Cart</a></li>
+          <li class="nav-item"><a class="nav-link" href="wishlist.html"><i class="fas fa-heart me-1"></i> Wishlist</a></li>
+          <li class="nav-item"><a class="nav-link support-link" href="#" role="button"><i class="fas fa-headset me-1"></i> Support</a></li>
+        </ul>
+
+        <div class="nav-search dropdown ms-3">
+          <button class="btn btn-outline-gamestore dropdown-toggle" id="navSearchToggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search"></i></button>
+          <div class="dropdown-menu dropdown-menu-end p-3">
+            <form class="d-flex" id="navSearchForm" onsubmit="return false;">
+              <input class="form-control form-control-gamestore me-2" type="search" placeholder="Search Product..." id="searchInput">
+              <button class="btn btn-primary-gamestore" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top:100px;">
+    <h1 class="mb-3">Keranjang Belanja</h1>
+    <p>Ini adalah halaman keranjang. Item yang ditambahkan akan muncul di sini.</p>
+    <div id="cartItems"></div>
+  </main>
+
+  <footer class="footer-gamestore mt-5">
+    <div class="container text-center py-3">
+      <p class="text-secondary mb-0">&copy; 2026 SolehStore. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="games.js"></script>
+  <script src="utils.js"></script>
+  <script src="main.js"></script>
+  <script>
+    function renderCart() {
+      const container = document.getElementById('cartItems');
+      const cart = loadFromLocalStorage('cart') || [];
+      if (!container) return;
+
+      if (!cart.length) {
+        container.innerHTML = '<div class="p-4 text-center text-secondary">Keranjang Anda kosong. Tambahkan product dari halaman Store.</div>';
+        return;
+      }
+
+      const totalPrice = cart.reduce((sum, it) => sum + (it.price * (it.quantity || 1)), 0);
+      container.innerHTML = `
+        <div class="list-group mb-3">
+          ${cart.map(item => `
+            <div class="list-group-item d-flex align-items-center" data-id="${item.id}">
+              <img src="${item.image}" alt="${item.title}" style="width:72px; height:72px; object-fit:cover; border-radius:6px; margin-right:12px;">
+              <div class="flex-grow-1">
+                <div class="fw-bold">${item.title}</div>
+                <div class="text-secondary small">Rp ${item.price.toLocaleString('id-ID')}</div>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-outline-gamestore cart-decrease" data-id="${item.id}">-</button>
+                <div class="px-2">${item.quantity || 1}</div>
+                <button class="btn btn-sm btn-outline-gamestore cart-increase" data-id="${item.id}">+</button>
+                <button class="btn btn-sm btn-outline-gamestore ms-2 cart-remove" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="fw-bold">Total:</div>
+          <div class="fw-bold">Rp ${totalPrice.toLocaleString('id-ID')}</div>
+        </div>
+        <div class="mt-3 text-end">
+          <button class="btn btn-primary-gamestore" id="checkoutBtn">Lanjut ke Checkout</button>
+        </div>
+      `;
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.cart-remove')) {
+        const id = parseInt(e.target.closest('.cart-remove').dataset.id, 10);
+        let cart = loadFromLocalStorage('cart') || [];
+        cart = cart.filter(i => i.id !== id);
+        saveToLocalStorage('cart', cart);
+        renderCart();
+        return;
+      }
+
+      if (e.target.closest('.cart-increase')) {
+        const id = parseInt(e.target.closest('.cart-increase').dataset.id, 10);
+        const cart = loadFromLocalStorage('cart') || [];
+        const it = cart.find(i => i.id === id);
+        if (it) { it.quantity = (it.quantity || 1) + 1; saveToLocalStorage('cart', cart); renderCart(); }
+        return;
+      }
+
+      if (e.target.closest('.cart-decrease')) {
+        const id = parseInt(e.target.closest('.cart-decrease').dataset.id, 10);
+        const cart = loadFromLocalStorage('cart') || [];
+        const it = cart.find(i => i.id === id);
+        if (it) {
+          it.quantity = (it.quantity || 1) - 1;
+          if (it.quantity <= 0) saveToLocalStorage('cart', cart.filter(i => i.id !== id));
+          else saveToLocalStorage('cart', cart);
+          renderCart();
+        }
+        return;
+      }
+
+      if (e.target.closest('#checkoutBtn')) {
+        const cart = loadFromLocalStorage('cart') || [];
+        const totalPrice = cart.reduce((sum, it) => sum + (it.price * (it.quantity || 1)), 0);
+        
+        let modal = document.getElementById('checkoutModal');
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.className = 'modal fade';
+          modal.id = 'checkoutModal';
+          modal.innerHTML = `
+            <div class="modal-dialog modal-md modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Checkout — Pembayaran</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <p>Total: <strong>Rp ${totalPrice.toLocaleString('id-ID')}</strong></p>
+                  <img src="bahan/qrcode.jpg" class="mb-3" style="max-width:260px;">
+                  <div class="mb-3 text-start">
+                    <label>Nomor WhatsApp:</label>
+                    <input type="text" id="contactInput" class="form-control" placeholder="0812xxxxxx">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-outline-gamestore" data-bs-dismiss="modal">Batal</button>
+                  <button class="btn btn-primary-gamestore" id="confirmPaymentBtn">Saya sudah bayar</button>
+                </div>
+              </div>
+            </div>`;
+          document.body.appendChild(modal);
+        }
+        new bootstrap.Modal(modal).show();
+
+        modal.querySelector('#confirmPaymentBtn').onclick = async function() {
+          const contact = modal.querySelector('#contactInput').value;
+          if (!contact) return alert("Harap masukkan nomor WhatsApp Anda!");
+          
+          const webhookUrl = 'https://discord.com/api/webhooks/1520284477476176003/LUQ0t5Ri26XFL_Q_X5uDPCm5FDKvOqEQ6dJ4p5aeUEiEq4b5hBL00h71Hz-1r2rc2oso';
+          const payload = {
+            "embeds": [{
+              "title": "Pesanan Baru!",
+              "fields": [
+                { "name": "Kontak Pembeli", "value": contact },
+                { "name": "Produk", "value": cart.map(i => `${i.title} (x${i.quantity || 1})`).join('\n') },
+                { "name": "Total", "value": `Rp ${totalPrice.toLocaleString('id-ID')}` }
+              ]
+            }]
+          };
+          try { await fetch(webhookUrl, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) }); } catch(e) {}
+          saveToLocalStorage('cart', []);
+          renderCart();
+          bootstrap.Modal.getInstance(modal).hide();
+          alert("Pembayaran berhasil dikirim! Admin akan segera menghubungi Anda.");
+        };
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', renderCart);
+  </script>
+  <div class="floating-music" aria-hidden="false">
+    <button id="floatingMusicBtn" title="Play / Pause background music"><i class="fas fa-play"></i></button>
+    <div class="floating-label">Background Music</div>
+  </div>
+</body>
+</html>
